@@ -66,3 +66,57 @@ git merge -m "Merge Branch1  into main branch" Branch1
 
 Удаление ветки
  git branch -d Branch1
+
+Удаленные репозитории
+
+git branch -a - показывает все ветки в удаленном репозитории, привязанном к локальному
+git pull - загрузка и применение изменений с удаленной ветки в локальную
+git push - загружает изменения из локальной ветки в удаленную
+
+Как связать локальный репозиторий с удаленным
+git remote add origin <url>
+
+git push -u origin <branch> - автоматической связи между ветками не устранавливается, поэтому при загрузке изменений из локального репозитория в удаленный нужно указывать название ветки УДАЛЕННОГО репозитория
+это нужно только в первый раз.
+
+git clone https://github.com/bstashchuk/docker.git - скачивание публичного репозитория с github
+
+Cloning into 'docker'...
+remote: Enumerating objects: 540, done.
+remote: Counting objects: 100% (88/88), done.
+remote: Compressing objects: 100% (65/65), done.
+remote: Total 540 (delta 20), reused 82 (delta 18), pack-reused 452
+Receiving objects: 100% (540/540), 1.04 MiB | 2.07 MiB/s, done.
+Resolving deltas: 100% (113/113), done.
+
+code . - открывает текущий репозиторий в Visual Code
+
+git remote -v - показывает настройки удаленного репозитория
+origin  https://github.com/bstashchuk/docker.git (fetch) - fetch используется для загрузки обновлений с удаленного сервера
+origin  https://github.com/bstashchuk/docker.git (push)
+
+git branch -vv - показывает связь между ветками локального и удаленного репозиториев
+* master 114405b [origin/master] Update Readme for the images-gallery project
+
+git remote add origin https://github.com/IlmenniDren/my-project.git - связываем свой репозиторий на диске с удаленным созданным в GitHub
+Чтобы начать загружать с диска в удаленный репозиторий нужно создать там access token,
+для получения доступа к токенам нужно сначала авторизироваться через браузер (возможно, однократно) 
+но после этого можно уже пушить сразу. Ниже показан пуш через браузерную авторизацию
+
+git push -u origin main
+info: please complete authentication in your browser...
+Enumerating objects: 43, done.
+Counting objects: 100% (43/43), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (33/33), done.
+Writing objects: 100% (43/43), 5.94 KiB | 1.19 MiB/s, done.
+Total 43 (delta 9), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (9/9), done.
+To https://github.com/IlmenniDren/my-project.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+Ниже написано как должна выглядеть авторизация через токен
+git push -u origin main
+>username for 'https://github.com/': IlmenniDren
+>password for 'https://IlmenniDren@github.com/': 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
