@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 fouth-file text 3
 Modified in main branch
-=======
-fouth-file text 2
-modified in Branch1
->>>>>>> Branch1
