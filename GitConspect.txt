@@ -4,3 +4,59 @@ git add - подготовка файлов перед коммитом
 git add <filename> - обработка одного файла
 git add . - обработка всего содержимого папки
 git commit -m "<message>" - создание коммита с записью изменений в репозиторий. 
+git log - просмотр истории коммитов
+git checkout <commit hash> - переход в определенную версию проекта по хэшу коммита (их видно в логе)
+git checkout <branch_name> - переход по имени ветки, если есть несколько веток
+
+
+Просмотр свойств git-объекта по первым символам хэша:
+PS C:\Temp\GITcourse\my-project> git cat-file -t ca58a6ca7
+commit
+PS C:\Temp\GITcourse\my-project> git cat-file -p ca58a6ca7
+tree 6fa7999d70821a983b8ce67fee1462e62174b76a - дерево, на которое указывает коммит
+parent 2a033ace9aa8c0a405b92cb6f4e1c5c59d011f72 - хэш предыдущего коммита 
+author ilmenni <aerr.bf.test@gmail.com> 1723215396 +0200
+committer ilmenni <aerr.bf.test@gmail.com> 1723215396 +0200
+
+Second version
+
+Здесь проверяем по хэшу дерева - получаем хэши внутренних объектов:
+PS C:\Temp\GITcourse\my-project> git cat-file -p 6fa7999d70
+100644 blob 2d3f2b9e8411b919106c8d5706701d2536ef37dc    GitConspect.txt
+100644 blob 2e9c5578047d942d1ddd30815b9443811421205a    englishtest.txt
+040000 tree 500b042f772fb45e7921c497499c012b7fb47c22    first-subfolder
+040000 tree 5bf9715150a8d506caa630146d931c4fd989ab7a    second-subfolder
+
+Прочитали по хэшу блоба содержимое файла:
+PS C:\Temp\GITcourse\my-project> git cat-file -p 2d3f2b9e8411b919
+cd C:\Temp\GITcourse\my-project
+git status - посмотреть состояние репозитория
+git add - подготовка файлов перед коммитом
+git add <filename> - обработка одного файла
+git add . - обработка всего содержимого папки
+git commit -m "<message>" - создание ком
+
+git checkout 2a033ace9aa8c0a405b92cb6f4e1c5c59d011f72 - переставили показатель HEAD на первый коммит. 
+>HEAD is now at 2a033ac First version
+После этого git log покажет только первый коммит:
+PS C:\Temp\GITcourse\my-project> git log
+commit 2a033ace9aa8c0a405b92cb6f4e1c5c59d011f72 (HEAD)
+Author: ilmenni <aerr.bf.test@gmail.com>
+Date:   Fri Aug 9 16:52:29 2024 +0200
+
+    First version
+PS C:\Temp\GITcourse\my-project>
+ls тоже будет показывать файлы и папки в состоянии первого коммита
+
+git status покажет тоже не ветку, а конкретный коммит:
+ git status
+HEAD detached at 2a033ac
+
+git checkout master - переместить head в последний коммит
+Previous HEAD position was 2a033ac First version
+Switched to branch 'master'
+
+git branch <branch_name> - создание новой ветки
+
+git branch -b <branch_name> -  создание новой ветки и переход в нее
+
