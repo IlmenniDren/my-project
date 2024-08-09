@@ -62,4 +62,7 @@ git branch -b <branch_name> -  создание новой ветки и пер�
 
 git branch - показывает список веток
 
+<<<<<<< HEAD
 git merge -m "Merge Branch1  into main branch" Branch1
+=======
+>>>>>>> Branch1
