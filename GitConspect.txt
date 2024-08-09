@@ -60,3 +60,5 @@ git branch <branch_name> - создание новой ветки
 
 git branch -b <branch_name> -  создание новой ветки и переход в нее
 
+git branch - показывает список веток
+
